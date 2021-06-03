@@ -1,0 +1,156 @@
+.navigation{
+    z-index: 10;
+    &__background{
+        height: 7rem;
+        width: 7rem;
+        border-radius: 50%;
+        transform: scale(1);
+        position: fixed;
+        background: rgb(255, 173, 136);
+        right: 3rem;
+        top: 3rem;
+        z-index: 11;
+        transition: .8s transform cubic-bezier(.6,-0.09,.45,1.16);
+        border: rgb(219, 219, 219) 2px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .2s;
+
+        &::after{
+            position: absolute;
+            content: "";
+            width: 2.8rem;
+            height: 0.2rem;
+            background-color: white;
+            transform: translateY(-1rem);
+            @media(max-width: 68.75em){
+                box-shadow: 0 8px 0 white;
+            }
+            box-shadow: 0 10px 0 white;
+            transition: .2s;
+        }  
+        &::before{
+            position: absolute;
+            content: "";
+            width: 2.8rem;
+            height: 0.2rem;
+            background-color: white;
+            transform: translateY(1rem);
+            transition: .2s;
+        }  
+    }
+    &__background-active{
+        background-color: var(--color1);
+
+        &::after{
+            transform: rotate(135deg) translateY(0rem);
+            box-shadow: none;
+        }
+        &::before{
+            transform: rotate(225deg) translateY(0rem);
+        }
+    }
+}
+
+.cover{
+    z-index: 8;
+    width: 0vw;
+    height: 0vh;
+    position: fixed;
+}
+.cover-active{
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.308);
+}
+.nav{
+    font-family: 'Roboto', sans-serif;
+    z-index: 9;
+    position: fixed;
+    height: 100vh;
+    width: 30vw;
+    left: -100rem;
+    transition: .6s ease;
+    background: linear-gradient(to right bottom, var(--color1), #ffc933);
+
+    @media(max-width: 68.75em){
+        width: 50vw;
+    }
+    @media(max-width: 37.5em){
+        width: 100vw;
+    }
+    &_options{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        &-logo{
+            text-align: center;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+        }
+        &-choice{
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 3rem;
+            font-size: 3rem;
+            color: white;
+            text-decoration: none;
+            &_svg{
+                height: 4rem;
+                z-index: 10;
+                fill: white;
+                width: 4rem;
+                margin-right: 2rem;
+            }
+            span{
+                z-index: 10;
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                top: 0;
+                transform-origin: bottom;
+                left: 0;
+                width: 3px;
+                height: 100%;
+                background-color: var(--color3);
+                transform: scaleY(0);
+                transition: 0.3s ease transform, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s; 
+            }
+            &:hover::before{
+                transform: scaleY(1);
+                width: 100%; 
+            }
+            &:not(:last-child){
+                margin-bottom: 1rem;
+            }
+            &:active::before{
+                background-color: darken(#ff3300, 20);
+            }
+            &-active::before{
+                transform: scaleY(1);
+                width: 100%; 
+            }
+            &-active{
+                pointer-events: none;
+            }
+        }
+    }
+    &-active{
+        left: 0;
+    }
+}
+
+.textoNombre{
+    font-size: 2rem;
+    padding: 0 2rem;
+    border-bottom: 1px solid white;
+    padding-bottom: 1rem;
+    border-top: 1px solid white;
+    padding-top: 1rem;
+}

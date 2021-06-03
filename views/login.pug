@@ -1,0 +1,27 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='shortcut icon' href='/img/logotipo.jpeg')
+  meta(name='viewport' content='width=|, initial-scale=1.0')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600&display=swap' rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,400&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='./css/style.css')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
+  title Acceder a inventario
+
+section.formulario.login
+  form#upload.form
+    h2.h2.titles.h2Form Complete el formulario para acceder
+    .input
+      label.input_label(for='nombre') Nombre del local
+      input#nombre.input_inputs(required='' type='text')
+    .input
+      label.input_label(for='password') Contrase&ntilde;a
+      input#password.input_inputs(required='' type='password')
+    button#register.btn.btn-green.btn-sub Acceder
+
+script(src='/js/bundle.js')
+script(src='/js/labelAni.js')

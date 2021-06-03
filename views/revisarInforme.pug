@@ -1,0 +1,75 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='shortcut icon' href='/img/logotipo.jpeg')
+  meta(name='viewport' content='width=|, initial-scale=1.0')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600&display=swap' rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,400&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='/css/style.css')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
+  title Todos los informes
+
+.popup.hiddenFill
+#borrarPr.form.hiddenForm
+  p.deleteP ¿Quieres eliminar este informe?
+  #noticia
+  .botones
+    button#EliminarInforme.btn-configurar.btn.btn-sub.btn-green Si, eliminalo
+    button#cancelarB.btn-configurar.btn.btn-sub.btn-orange No eliminar
+
+form#EditarInforme.form.hiddenForm
+  h2.h2.titles.h2Form Editar Informe
+  .input
+    label.input_label.confirmado(for='precio') Precio
+    input#precio.input_inputs(required='' type='text')
+  .input
+    label.input_label.confirmado(for='KG') KG
+    input#KG.input_inputs(required='' type='text')
+  .botones
+    button#editar.btn.btn-sub.btn-green Editar
+    a#cancelarE.btn.btn-sub.btn-orange Cancelar
+
+section.app
+  .app_section
+    nav.app_section_nav
+      img.logotipo(src=`/img/logotipo.jpeg`)
+      a.app_section_nav-as(href='/app/crearInforme')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-newspaper')
+        span Agregar compras/ventas de bienes
+      a.app_section_nav-as(href='/app/productos')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-envelope')
+        span Crear tipos de bienes
+      a.app_section_nav-as.app_section_nav-as--selected(href='/app/revisarInformes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-profile')
+        span Todas las ventas/compras
+      a.app_section_nav-as(href='/app/adminBienes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-coin-dollar')
+        span Administrar bienes y ganancias
+      -if(user.permiso === true)
+        a.app_section_nav-as(href='/app/locales')
+          svg.nav_options-choice_svg.app_svg
+            use(xlink:href='/img/symbol-def2.svg#icon-flag')
+          span Administrar locales
+      a#salir.app_section_nav-as(href='#')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-defs.svg#icon-exit')
+        span Salir
+    .app_section_content
+      h1.h1.titles.app_section_content--title Informes
+      form.formApp
+        select#Fecha.Alumno(name='')
+          option(value='nada' selected='' disabled='') Seleccione dia
+          option(data-id=`${user._id}` value=`Dia`) Hoy
+          option(data-id=`${user._id}` value=`Mes`) Mes actual
+          option(data-id=`${user._id}` value=`Todos`) Todos
+      #divisor
+
+script(src='/js/bundle.js')
+script(src='/js/labelAni.js')

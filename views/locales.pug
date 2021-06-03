@@ -1,0 +1,108 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='shortcut icon' href='/img/logotipo.jpeg')
+  meta(name='viewport' content='width=|, initial-scale=1.0')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600&display=swap' rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,400&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='/css/style.css')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
+  title Administrar locales
+
+.popup.hiddenFill
+form#Formar.form.hiddenForm.noticias
+  h2.h2.titles.h2Form Crear un nuevo local
+  .input
+    label.input_label(for='nombre') Nombre del local
+    input#nombre.input_inputs(required='' type='text')
+  .input
+    label.input_label(for='domicilio') Domicilio del local
+    input#domicilio.input_inputs(required='' type='text')
+  .input
+    label.input_label(for='password') Contraseña para acceder al inventario
+    input#password.input_inputs(required='' type='password')
+  .input
+    label.input_label.confirmed.confirmado(for='foto') Foto del local
+    input#foto.input_inputs.custom-file-input(required="" type='file')
+  .botones
+    button#publicarReporte.btn.btn-sub.btn-green(data-escuela=`${user.escuela}` data-profeId=`${user.id}`) Crear
+    a#cancelarN.btn.btn-sub.btn-orange Cancelar
+
+#borrar.form.hiddenForm
+  p.deleteP ¿Quieres eliminar este local?
+  #noticia
+  .botones
+    button#EliminarC.btn-configurar.btn.btn-sub.btn-green Si, eliminalo
+    button#cancelarB.btn-configurar.btn.btn-sub.btn-orange No eliminar
+
+form#Editar.form.hiddenForm
+  h2.h2.titles.h2Form Editar Local
+  .input
+    label.input_label.confirmado(for='nombreE') Nombre del local
+    input#nombreE.input_inputs(required='' type='text')
+  .input
+    label.input_label.confirmado(for='domicilioE') Domicilio del local
+    input#domicilioE.input_inputs(required='' type='text')
+  .input
+    label.input_label.confirmed.confirmado(for='foto') Foto del local
+    input#fotoE.input_inputs.custom-file-input(type='file')
+  .botones
+    button#editar.btn.btn-sub.btn-green Editar
+    a#cancelarE.btn.btn-sub.btn-orange Cancelar
+  h2.h2.titles.h2Form Cambiar Contraseña
+  .input
+    label.input_label(for='passwordE') Contraseña Actual
+    input#passwordE.input_inputs(type='password')
+  .input
+    label.input_label(for='newPassword') Nueva Contraseña
+    input#newPassword.input_inputs(type='text')
+  .botones
+    a#editarContrasena.btn.btn-sub.btn-green Cambiar
+  
+section.app
+  .app_section
+    nav.app_section_nav
+      img.logotipo(src=`/img/logotipo.jpeg`)
+      a.app_section_nav-as(href='/app/crearInforme')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-newspaper')
+        span Agregar compras/ventas de bienes
+      a.app_section_nav-as(href='/app/productos')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-envelope')
+        span Crear tipos de bienes
+      a.app_section_nav-as(href='/app/revisarInformes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-profile')
+        span Todas las ventas/compras
+      a.app_section_nav-as(href='/app/adminBienes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-coin-dollar')
+        span Administrar bienes y ganancias
+      -if(user.permiso === true)
+        a.app_section_nav-as.app_section_nav-as--selected(href='/app/locales')
+          svg.nav_options-choice_svg.app_svg
+            use(xlink:href='/img/symbol-def2.svg#icon-flag')
+          span Administrar locales
+      a#salir.app_section_nav-as(href='#')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-defs.svg#icon-exit')
+        span Salir
+    .app_section_content
+      h1.h1.titles.app_section_content--title Locales
+      button#crearLocal.btn.btn-green.btn-sub Crear Local
+      #divisor
+        each local in locales
+          .content(data-id=`${local._id}`)
+            h2.h2.titles= local.nombre
+            p.text=local.domicilio
+            img.app_section_content-cont--image(src=`${local.foto}`)
+            .botones
+              button#Cambiar.btn-configurar.btn.btn-sub.btn-green Cambiar informacion
+              -if(local.inborrable !== true)
+                button#Eliminar.btn-configurar.btn.btn-sub.btn-orange Eliminar
+script(src='/js/bundle.js')
+script(src='/js/labelAni.js')

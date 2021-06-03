@@ -1,0 +1,88 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='shortcut icon' href='/img/logotipo.jpeg')
+  meta(name='viewport' content='width=|, initial-scale=1.0')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600&display=swap' rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,400&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='/css/style.css')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
+  title Crear productos
+
+.popup.hiddenFill
+form#FormarPr.form.hiddenForm.noticias
+  h2.h2.titles.h2Form Crear un nuevo Bien
+  .input
+    label.input_label(for='nombre') Nombre del bien
+    input#nombre.input_inputs(required='' type='text')
+  .input
+    label.input_label.confirmed.confirmado(for='foto') Foto del bien (opcional)
+    input#foto.input_inputs.custom-file-input(type='file')
+  .botones
+    button#publicarReporte.btn.btn-sub.btn-green(data-escuela=`${user.escuela}` data-profeId=`${user.id}`) Crear
+    a#cancelarN.btn.btn-sub.btn-orange Cancelar
+
+#borrarPr.form.hiddenForm
+  p.deleteP ¿Quieres eliminar este bien?
+  #noticia
+  .botones
+    button#EliminarPr.btn-configurar.btn.btn-sub.btn-green Si, eliminalo
+    button#cancelarB.btn-configurar.btn.btn-sub.btn-orange No eliminar
+
+form#EditarPr.form.hiddenForm
+  h2.h2.titles.h2Form Editar Bien
+  .input
+    label.input_label.confirmado(for='nombreE') Nombre del bien
+    input#nombreE.input_inputs(required='' type='text')
+  .input
+    label.input_label.confirmed.confirmado(for='foto') Foto del bien (opcional)
+    input#fotoE.input_inputs.custom-file-input(type='file')
+  .botones
+    button#editar.btn.btn-sub.btn-green Editar
+    a#cancelarE.btn.btn-sub.btn-orange Cancelar
+  
+section.app
+  .app_section
+    nav.app_section_nav
+      img.logotipo(src=`/img/logotipo.jpeg`)
+      a.app_section_nav-as(href='/app/crearInforme')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-newspaper')
+        span Agregar compras/ventas de bienes
+      a.app_section_nav-as.app_section_nav-as--selected(href='/app/productos')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-envelope')
+        span Crear tipos de bienes
+      a.app_section_nav-as(href='/app/revisarInformes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-profile')
+        span Todas las ventas/compras
+      a.app_section_nav-as(href='/app/adminBienes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-coin-dollar')
+        span Administrar bienes y ganancias
+      -if(user.permiso === true)
+        a.app_section_nav-as(href='/app/locales')
+          svg.nav_options-choice_svg.app_svg
+            use(xlink:href='/img/symbol-def2.svg#icon-flag')
+          span Administrar locales
+      a#salir.app_section_nav-as(href='#')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-defs.svg#icon-exit')
+        span Salir
+    .app_section_content
+      h1.h1.titles.app_section_content--title Bienes
+      button#crearLocal.btn.btn-green.btn-sub Crear bien
+      #divisor
+        each producto in productos
+          .content.centered(data-id=`${producto._id}`)
+            h2.h2.titles= producto.nombre
+            img.app_section_content-cont--image.ima(src=`${producto.foto}`)
+            .botones.centered
+              button#CambiarPr.btn-configurar.btn.btn-sub.btn-green Cambiar informacion
+              button#Eliminar.btn-configurar.btn.btn-sub.btn-orange Eliminar
+script(src='/js/bundle.js')
+script(src='/js/labelAni.js')

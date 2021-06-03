@@ -1,0 +1,96 @@
+.formulario{
+    padding: 15rem 0;
+    background-image: radial-gradient(circle, #ff1818, #ff8726, #ff7932, #fc6c3c, #f86045, #f86251, #f7655c, #f66967, #fa7a78, #fc8a89, #fe9a9a, #ffaaaa);    display: flex;
+    justify-content: center;
+    background-attachment: fixed;
+    align-items: center;
+    @media(max-width: 37.5em){
+        padding: 0;
+        height: 100%;
+    }
+}
+.form{
+    display: flex;
+    overflow-y: scroll;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.356);
+    flex-direction: column;
+    backdrop-filter: blur(150px);
+    padding: 4rem;
+    background-color: rgba(255, 255, 255, 0.376);
+    border: solid 1px whitesmoke;
+    width: 50vw;
+    @media(max-width: 56.25em){
+        width: 75vw;
+    }
+    @media(max-width: 37.5em){
+        width: 100vw;
+        height: 100%;
+    }
+}
+.input{
+    position: relative;
+    &_label{
+        position: absolute;
+        top: 13%;
+        left: 2%;
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 2rem;
+        transition: .3s ease;
+    }
+    &_inputs{
+        font-size: 2.3rem;
+        padding: 1rem;
+        width: 100%;
+        margin-bottom: 4rem;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.513);
+        border: solid rgb(255, 255, 255) 1px;
+    }
+    &:focus-within .input_label{
+        font-size: 1.5rem;
+        top: -20%;
+    }
+
+}
+.h2Form{
+    text-align: center;
+    padding-bottom: 4rem;
+    background-image: linear-gradient(to right, white,white);
+}
+.confirmado{
+    font-size: 1.5rem;
+    top: -20%;
+}
+.btn-sub{
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.login{
+    height: 100vh;
+}
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    content: 'Seleccionar foto o captura';
+    display: inline-block;
+    background: whitesmoke;
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }

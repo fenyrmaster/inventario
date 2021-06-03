@@ -1,0 +1,65 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='shortcut icon' href='/img/logotipo.jpeg')
+  meta(name='viewport' content='width=|, initial-scale=1.0')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com')
+  link(href='https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600&display=swap' rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,400&display=swap' rel='stylesheet')
+  link(rel='stylesheet' href='/css/style.css')
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet')
+  title Crear informe
+
+section.app
+  .app_section
+    nav.app_section_nav
+      img.logotipo(src=`/img/logotipo.jpeg`)
+      a.app_section_nav-as.app_section_nav-as--selected(href='/app/crearInforme')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-newspaper')
+        span Agregar compras/ventas de bienes
+      a.app_section_nav-as(href='/app/productos')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-envelope')
+        span Crear tipos de bienes
+      a.app_section_nav-as(href='/app/revisarInformes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-profile')
+        span Todas las ventas/compras
+      a.app_section_nav-as(href='/app/adminBienes')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-def2.svg#icon-coin-dollar')
+        span Administrar bienes y ganancias
+      -if(user.permiso === true)
+        a.app_section_nav-as(href='/app/locales')
+          svg.nav_options-choice_svg.app_svg
+            use(xlink:href='/img/symbol-def2.svg#icon-flag')
+          span Administrar locales
+      a#salir.app_section_nav-as(href='#')
+        svg.nav_options-choice_svg.app_svg
+          use(xlink:href='/img/symbol-defs.svg#icon-exit')
+        span Salir
+    .app_section_content
+      h1.h1.titles.app_section_content--title Informes
+      #divisor
+        form#crearInforme.formChange
+          h3.h3.titles Crear informe
+          .input
+            label.input_label(for='KG') Kilogramos
+            input#KG.input_inputs.inputChange(required='' type='text')
+          .input
+            label.input_label(for='precio') Precio
+            input#precio.input_inputs.inputChange(required='' type='text')
+          select#Producto.inputSelect.inputChange(required='' name='')
+            option(value='nada' selected='' disabled='') Seleccione bien
+            each producto in productos
+              option(value=`${producto.nombre}` data-id=`${producto._id}`)=producto.nombre
+          select#Operacion.inputSelect.inputChange(required='' name='')
+            option(value='nada' selected='' disabled='') Seleccione operacion
+            option(value='Compra') Compra
+            option(value='Venta') Venta
+          button.btn.btn-green.btn-sub Crear Informe
+script(src='/js/bundle.js')
+script(src='/js/labelAni.js')
