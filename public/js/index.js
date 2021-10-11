@@ -65,7 +65,7 @@ if(formEditarIn){
         e.preventDefault();
         const KG = document.getElementById("KG").value;
         const precio = document.getElementById("precio").value;
-        editarInforme(parseInt(KG),parseInt(precio),publicEdit.id);
+        editarInforme(parseFloat(KG),parseFloat(precio),publicEdit.id);
     })
 }
 
@@ -122,7 +122,7 @@ if(formInforme){
         const select2 = document.getElementById("Operacion");
         const producto = select.options[select.selectedIndex].dataset.id;
         const operacion = select2.options[select2.selectedIndex].value;
-        crearInforme(parseInt(KG),parseInt(precio),producto,operacion)
+        crearInforme(parseFloat(KG),parseFloat(precio),producto,operacion)
     })
 }
 
